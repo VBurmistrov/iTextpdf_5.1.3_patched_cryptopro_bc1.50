@@ -1,0 +1,24 @@
+***************
+*** 228,234 ****
+          algorithmNames.put("1.3.36.3.3.1.3", "RSA");
+          algorithmNames.put("1.3.36.3.3.1.2", "RSA");
+          algorithmNames.put("1.3.36.3.3.1.4", "RSA");
+- 
+          allowedDigests.put("MD5", "1.2.840.113549.2.5");
+          allowedDigests.put("MD2", "1.2.840.113549.2.2");
+          allowedDigests.put("SHA1", "1.3.14.3.2.26");
+--- 244,257 ----
+          algorithmNames.put("1.3.36.3.3.1.3", "RSA");
+          algorithmNames.put("1.3.36.3.3.1.2", "RSA");
+          algorithmNames.put("1.3.36.3.3.1.4", "RSA");
++         
++         algorithmNames.put(ID_GOST3410EL, JCP.GOST_EL_DEGREE_NAME); 			 // 01/22/12 идентификатор набора параметров ГОСТ Р 34.10-2001
++         algorithmNames.put(ID_GOST3410DHEL, JCP.GOST_EL_DH_NAME); 				 // 01/22/12 идентификатор набора параметров ГОСТ Р 34.10-2001 DH
++         algorithmNames.put(ID_GOST3410EL_2012_256, JCP.GOST_EL_2012_256_NAME);   // 10/07/14 идентификатор набора параметров ГОСТ Р 34.10-2012 (256)
++         algorithmNames.put(ID_GOST3410DHEL_2012_256, JCP.GOST_DH_2012_256_NAME); // 10/07/14 идентификатор набора параметров ГОСТ Р 34.10-2012 (256) DH
++         algorithmNames.put(ID_GOST3410EL_2012_512, JCP.GOST_EL_2012_512_NAME);   // 10/07/14 идентификатор набора параметров ГОСТ Р 34.10-2012 (512)
++         algorithmNames.put(ID_GOST3410DHEL_2012_512, JCP.GOST_DH_2012_512_NAME); // 10/07/14 идентификатор набора параметров ГОСТ Р 34.10-2012 (512) DH
++         
+          allowedDigests.put("MD5", "1.2.840.113549.2.5");
+          allowedDigests.put("MD2", "1.2.840.113549.2.2");
+          allowedDigests.put("SHA1", "1.3.14.3.2.26");

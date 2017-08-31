@@ -1,0 +1,41 @@
+***************
+*** 908,920 ****
+                          X509Certificate certStoreX509 = (X509Certificate)keystore.getCertificate(alias);
+                          if (verifyCertificate(certStoreX509, crls, calendar) != null)
+                              continue;
+                          try {
+                              cert.verify(certStoreX509.getPublicKey());
+                              return null;
+                          }
+                          catch (Exception e) {
+-                             continue;
+                          }
+                      }
+                      catch (Exception ex) {
+                      }
+--- 982,1006 ----
+                          X509Certificate certStoreX509 = (X509Certificate)keystore.getCertificate(alias);
+                          if (verifyCertificate(certStoreX509, crls, calendar) != null)
+                              continue;
++                         
+                          try {
+                              cert.verify(certStoreX509.getPublicKey());
+                              return null;
+                          }
+                          catch (Exception e) {
++                         	
++                         	// 10/07/14 Возможно, мы имеем дело с ГОСТ сертификатом
++  
++                         	try {
++                         		X509Certificate tmpCert = new X509CertImpl(certStoreX509.getEncoded());
++                         		cert.verify(tmpCert.getPublicKey());
++                         	}
++                         	catch (Exception ee) {
++                         		continue;
++                         	}
++                         	
+                          }
++                         
+                      }
+                      catch (Exception ex) {
+                      }

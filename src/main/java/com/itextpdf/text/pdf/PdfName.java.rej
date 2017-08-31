@@ -1,0 +1,19 @@
+***************
+*** 111,117 ****
+       * @since 2.1.6
+       */
+      public static final PdfName ACTUALTEXT = new PdfName("ActualText");
+-     /** A name */
+      public static final PdfName ADBE_PKCS7_DETACHED = new PdfName("adbe.pkcs7.detached");
+      /** A name */
+      public static final PdfName ADBE_PKCS7_S4 =new PdfName("adbe.pkcs7.s4");
+--- 111,119 ----
+       * @since 2.1.6
+       */
+      public static final PdfName ACTUALTEXT = new PdfName("ActualText");
++     /** A name.
++      * 01/22/12 Используется для подписи на алгоритмах ГОСТ Р 34.10-2001/2012.
++      */
+      public static final PdfName ADBE_PKCS7_DETACHED = new PdfName("adbe.pkcs7.detached");
+      /** A name */
+      public static final PdfName ADBE_PKCS7_S4 =new PdfName("adbe.pkcs7.s4");

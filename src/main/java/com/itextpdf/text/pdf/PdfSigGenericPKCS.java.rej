@@ -1,0 +1,37 @@
+***************
+*** 959,964 ****
+                  sigStandard = new PdfSigGenericPKCS.PPKLite(getProvider());
+              else if (PdfName.ADOBE_PPKMS.equals(getFilter()))
+                  sigStandard = new PdfSigGenericPKCS.PPKMS(getProvider());
+              else if (PdfName.VERISIGN_PPKVS.equals(getFilter()))
+                  sigStandard = new PdfSigGenericPKCS.VeriSign(getProvider());
+              else
+--- 966,993 ----
+                  sigStandard = new PdfSigGenericPKCS.PPKLite(getProvider());
+              else if (PdfName.ADOBE_PPKMS.equals(getFilter()))
+                  sigStandard = new PdfSigGenericPKCS.PPKMS(getProvider());
++             // 01/22/12 Фильтр для ГОСТ подписи
++             else if (PdfName.ADOBE_CryptoProPDF.equals(getFilter())) {
++             	
++             	PrivateKey pk = getPrivKey();
++             	String pkAlgName = pk.getAlgorithm();
++ 
++             	// 10/07/14 Алгоритм подписи 34.10-2012 (256)
++             	if (pkAlgName.equalsIgnoreCase(JCP.GOST_EL_2012_256_NAME) || 
++             		pkAlgName.equalsIgnoreCase(JCP.GOST_DH_2012_256_NAME)) {
++                 	sigStandard = new PdfSigGenericPKCS.PPCryptoProPDF_3411_2012_256(getProvider());
++                 }
++             	// 10/07/14 Алгоритм подписи 34.10-2012 (512)
++             	else if (pkAlgName.equalsIgnoreCase(JCP.GOST_EL_2012_512_NAME) || 
++             		pkAlgName.equalsIgnoreCase(JCP.GOST_DH_2012_512_NAME)) {
++                     sigStandard = new PdfSigGenericPKCS.PPCryptoProPDF_3411_2012_512(getProvider());
++                 }
++             	// 01/22/12 Алгоритм подписи 34.10-2001
++             	else {
++             		sigStandard = new PdfSigGenericPKCS.PPCryptoProPDF_3411(getProvider());
++             	}
++             	
++             }
+              else if (PdfName.VERISIGN_PPKVS.equals(getFilter()))
+                  sigStandard = new PdfSigGenericPKCS.VeriSign(getProvider());
+              else
